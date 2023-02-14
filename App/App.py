@@ -4,7 +4,7 @@ import pandas as pd
 import base64, random
 import time,datetime
 import pymysql
-import os,pwd
+import os
 import socket
 import platform
 import geocoder
@@ -27,7 +27,7 @@ from Courses import ds_course,web_course,android_course,ios_course,uiux_course,r
 import nltk
 nltk.download('stopwords')
 
-os.getlogin = lambda: pwd.getpwuid(os.getuid())[0]
+#os.getlogin = lambda: pwd.getpwuid(os.getuid())[0]
 ###### Preprocessing functions ######
 
 
@@ -89,7 +89,8 @@ def course_recommender(course_list):
 
 
 # sql connector
-connection = pymysql.connect(host='localhost',user='root',password='Naveen@532',db='cv')
+
+connection = pymysql.connect(host='eu-cdbr-west-03.cleardb.net',user='b36420d3500793',password='a07d343c',db='heroku_94a717bc213de16')
 cursor = connection.cursor()
 
 
@@ -117,7 +118,7 @@ def insertf_data(feed_name,feed_email,feed_score,comments,Timestamp):
 
 
 st.set_page_config(
-   page_title="AI Resume Analyzer",
+   page_title="Resume.AI",
    page_icon='./Logo/recommend.png',
 )
 
@@ -133,7 +134,7 @@ def run():
     st.sidebar.markdown("# Choose Something...")
     activities = ["User", "Feedback", "About", "Admin"]
     choice = st.sidebar.selectbox("Choose among the given options:", activities)
-    link = '<b>Built with 🤍 by <a href="https://dnoobnerd.netlify.app/" style="text-decoration: none; color: #021659;">Dipanshu</a></b>' 
+    link = '<b>Built with 🤍 by <a href="https:" style="text-decoration: none; color: #021659;">Dipanshu</a></b>' 
     st.sidebar.markdown(link, unsafe_allow_html=True)
     st.sidebar.markdown('''
         <!-- site visitors -->
@@ -154,7 +155,7 @@ def run():
 
 
     # Create the DB
-    db_sql = """CREATE DATABASE IF NOT EXISTS CV;"""
+    db_sql = """CREATE DATABASE IF NOT EXISTS heroku_94a717bc213de16;"""
     cursor.execute(db_sql)
 
 
